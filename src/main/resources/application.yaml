@@ -1,0 +1,10 @@
+wisvch:
+  connect:
+    issuer-uri: https://connect.ch.tudelft.nl/
+    client-uri: http://localhost:8080
+    admin-groups:
+     - chbeheer
+    registered-client:
+      client-name: CH Kubernetes
+      client-id: kubernetes
+      client-secret: APmrP0mX-X8PKo4nIRWoP8c_UG2k_V-1o4PL2KaOXwucAls4qmM4tMxOUtxBrb55i1h5__ndZJmRjNpvjPSLkuI

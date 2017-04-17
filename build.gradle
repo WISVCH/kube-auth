@@ -1,0 +1,57 @@
+buildscript {
+    ext {
+        springBootVersion = '1.5.2.RELEASE'
+    }
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'org.springframework.boot'
+
+jar {
+    baseName = 'kube-auth'
+    version = project.hasProperty('buildNumber') ? buildNumber : 'SNAPSHOT'
+    archiveName = "${baseName}.${extension}"
+    manifest {
+        attributes("Implementation-Title": "Kube Auth", "Implementation-Version": version)
+    }
+}
+springBoot {
+    executable = true
+}
+
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+    maven {
+        url 'https://dl.bintray.com/wisvch/maven'
+    }
+}
+
+
+dependencies {
+    compile('org.springframework.boot:spring-boot-starter-actuator')
+    compile('org.springframework.boot:spring-boot-starter-security')
+    compile('org.springframework.boot:spring-boot-starter-thymeleaf')
+    compile('org.springframework.boot:spring-boot-starter-web')
+
+    compile("ch.wisv:wisvch-connect-client:1.2.6.3") {
+        // Workaround for https://github.com/mitreid-connect/OpenID-Connect-Java-Spring-Server/pull/1084
+        exclude module: 'bcprov-jdk15on'
+    }
+    
+    compileOnly('org.springframework.boot:spring-boot-configuration-processor')
+
+    compile("org.webjars:bootstrap:3.3.7-1")
+    compile("org.webjars.bower:wisvch-bootstrap-theme:0.0.3")
+
+    testCompile('org.springframework.boot:spring-boot-starter-test')
+}
