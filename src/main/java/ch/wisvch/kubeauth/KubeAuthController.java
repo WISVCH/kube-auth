@@ -20,10 +20,11 @@ public class KubeAuthController {
 
     @GetMapping("/")
     public String index(Model model, OIDCAuthenticationToken auth) throws ParseException {
+        // TODO: determine default namespace for usability
+        // TODO: return set of commands in addition to kubeconfig file
         model.addAttribute("client_id", registeredClient.getClientId());
         model.addAttribute("client_secret", registeredClient.getClientSecret());
         model.addAttribute("issuer", auth.getIssuer());
-        model.addAttribute("sub", auth.getSub());
         model.addAttribute("refresh_token", auth.getRefreshTokenValue());
 
         return "index";
