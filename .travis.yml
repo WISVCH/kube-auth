@@ -1,0 +1,13 @@
+sudo: required
+services:
+- docker
+language: java
+jdk:
+- oraclejdk8
+script:
+- "./gradlew build"
+- docker build --no-cache --pull .
+notifications:
+  slack:
+    rooms:
+      secure: gpcqbuBg/PEeobtDDHvpe4zMw3QgXHthBwsGnGdW/Mf9kRNZC7t6d60VmVKxPnK2xJKh8o0NS9CWM7e6wjlv+XwGxTu+l69BQSq1VNXO0WmlEGFRIIWtA7HRuUcLCBHUpNGhr2agWf/qf7PKTal7VqcTmAtsqKJc2cDSUmOvrojtSnq7X35/uojPRYMPxxTtBS6gHUMQ8pYkR9d7tJDp5BjJbOQ0GMaTae0qjs20/yCGB3kd4sH6RJzwypgBlNw8QZI7qihe1QcRmtuMkm1Eewjxl1wVlmr/j7OVl81rn0Aol0k9TWiGD1d+fIdwMXNRCc+CPa9CLsM/dS4Nu0ZTY3M+hf7pJNZpaozVg4qSH5m+/YQ09Lwe+rAlD55KnjKF/tATLW0m39N2r/fGaeL3g8FrxKod7FrpPyOSPDgTWGo1zJOZd7Z/5nbg3H6qzfq+VOiKKDY78keUIewdY/9U9kb3awURKx4UfKkK1mspGoJN/oO/cygTdaCqALLgUd9f+4CGq+dAdJDge7l+CMUEnCbqlLBL/esFIAzfIowPvN7z5h0tFmcvRITmKBihoQuc3nKwqCCgmGFVELXUCPLCnoXTGPefYfUFGoUxC9dcmEMLwyeyCMEDbH+8D0zgiRKmkWUnrKWy4tVhyROmfxt4Gv8rnoKbEatrEXaie7I7JkY=
