@@ -6,11 +6,11 @@ all: build push deploy
 
 build:
 	@./gradlew clean build -PbuildNumber=${REV}
-	@docker build --no-cache --pull -t wisvch-docker-registry.bintray.io/kube-auth:latest -t wisvch-docker-registry.bintray.io/kube-auth:${REV} .
+	@docker build --no-cache --pull -t wisvch/kube-auth:latest -t wisvch/kube-auth:${REV} .
 
 push:
-	@docker push wisvch-docker-registry.bintray.io/kube-auth:latest
-	@docker push wisvch-docker-registry.bintray.io/kube-auth:${REV}
+	@docker push wisvch/kube-auth:latest
+	@docker push wisvch/kube-auth:${REV}
 
 deploy:
-	@kubectl set image deployment kube-auth kube-auth=wisvch-docker-registry.bintray.io/kube-auth:${REV}
+	@kubectl set image deployment kube-auth kube-auth=wisvch/kube-auth:${REV}
