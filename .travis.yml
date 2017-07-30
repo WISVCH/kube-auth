@@ -5,8 +5,13 @@ language: java
 jdk:
 - oraclejdk8
 script:
-- "./gradlew build"
-- docker build --no-cache --pull .
+- "./gradlew clean build -PbuildNumber=0.0.$TRAVIS_BUILD_NUMBER"
+- docker build --no-cache --pull -t wisvch/kube-auth:0.0.$TRAVIS_BUILD_NUMBER .
+after_success:
+- if [ "$TRAVIS_BRANCH" == "master" ]; then
+  docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD";
+  docker push wisvch/kube-auth:0.0.$TRAVIS_BUILD_NUMBER;
+  fi
 notifications:
   slack:
     rooms:
