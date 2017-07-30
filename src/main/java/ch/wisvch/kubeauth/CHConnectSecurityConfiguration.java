@@ -136,8 +136,6 @@ public class CHConnectSecurityConfiguration extends WebSecurityConfigurerAdapter
         StaticSingleIssuerService issuer = new StaticSingleIssuerService();
         issuer.setIssuer(properties.getIssuerUri());
         oidcFilter.setIssuerService(issuer);
-
-        // TODO: for production, sign or encrypt requests
         oidcFilter.setAuthRequestUrlBuilder(new PlainAuthRequestUrlBuilder());
 
         return oidcFilter;
